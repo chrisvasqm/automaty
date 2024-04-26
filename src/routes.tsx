@@ -3,6 +3,7 @@ import Layout from './Layout';
 import ErrorPage from './pages/ErrorPage';
 import LoggedInPage from './pages/LoggedInPage';
 import LoginPage from './pages/LoginPage';
+import StudentsPage from './pages/StudentsPage';
 
 const router = createBrowserRouter([
     {
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
         children: [
             { path: '/', element: <LoginPage /> },
             { path: '/loggedIn', element: <LoggedInPage /> },
+            { path: '/students', element: <StudentsPage /> },
         ]
     }
 ])

@@ -1,0 +1,38 @@
+import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import ImportContactsIcon from '@mui/icons-material/ImportContacts';
+import LoginIcon from '@mui/icons-material/Login';
+import { Link } from 'react-router-dom';
+
+const SidePanel = () => {
+    return (
+        <Box
+            sx={{ width: '100%', maxWidth: 200 }}>
+            <List>
+                <Link to='/'>
+                    <ListItem disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <LoginIcon />
+                            </ListItemIcon>
+                            <ListItemText primary='Login' />
+                        </ListItemButton>
+                    </ListItem>
+                </Link>
+
+                <Link to='/students'>
+                    <ListItem disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <ImportContactsIcon />
+                            </ListItemIcon>
+                            <ListItemText primary='Students' />
+                        </ListItemButton>
+                    </ListItem>
+                </Link>
+
+            </List>
+        </Box>
+    )
+}
+
+export default SidePanel
