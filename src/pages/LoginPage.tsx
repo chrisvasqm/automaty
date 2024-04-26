@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Box, Button, Card, CardContent, Stack, TextField, Typography } from '@mui/material'
+import { Alert, Box, Button, Card, CardContent, Stack, TextField, Typography } from '@mui/material'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
@@ -17,6 +18,7 @@ type FormData = z.infer<typeof schema>
 
 const LoginPage = () => {
     const navigate = useNavigate();
+    const [loginError, setLoginError] = useState(false);
 
     const {
         register,
@@ -26,9 +28,9 @@ const LoginPage = () => {
 
     const onSubmit = (data: FormData) => {
         const { username, password } = data;
-        if (username === 'admin' && password === 'admin') {
-            navigate('/loggedIn')
-        }
+
+        if (username === 'admin' && password === 'admin') navigate('/loggedIn')
+        else setLoginError(true)
     }
 
     return (
@@ -48,6 +50,8 @@ const LoginPage = () => {
                                 sx={{ fontSize: 22 }}>
                                 Login
                             </Typography>
+
+                            {loginError && <Alert severity="error">Invalid username and/or password</Alert>}
 
                             <TextField
                                 id='username'
