@@ -47,7 +47,7 @@ const LoginPage = () => {
                             <Typography
                                 align='center'
                                 variant='h2'
-                                sx={{ fontSize: 22 }}>
+                                sx={{ fontSize: 20 }}>
                                 Login
                             </Typography>
 

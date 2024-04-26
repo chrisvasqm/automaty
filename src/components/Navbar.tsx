@@ -4,7 +4,7 @@ const Navbar = () => {
     return (
         <nav>
             <Card elevation={6} sx={{ padding: 2, borderRadius: 0 }}>
-                <Typography variant='h1' fontSize={26}>Automaty</Typography>
+                <Typography variant='h1' fontSize={24}>Automaty</Typography>
             </Card>
         </nav>
     )
