@@ -17,7 +17,7 @@ const Navbar = () => {
                         variant='h1'
                         fontSize={24}>Automaty</Typography>
                     <Link to="https://github.com/chrisvasqm/automaty" target='_blank'>
-                        <IconButton color='primary' size='small'>
+                        <IconButton id='link-github' color='primary' size='small'>
                             <GitHubIcon />
                         </IconButton>
                     </Link>
