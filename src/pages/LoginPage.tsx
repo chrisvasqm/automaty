@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, Input, InputLabel, Stack } from '@mui/material'
+import { Box, Button, Card, CardContent, CardHeader, FormControl, Input, InputLabel, Stack, TextField, Typography } from '@mui/material'
 
 const LoginPage = () => {
     return (
@@ -9,25 +9,24 @@ const LoginPage = () => {
                 alignItems: 'center'
             }}>
             <form>
-                <Stack>
-                    <FormControl sx={{ marginBottom: 2 }}>
-                        <InputLabel>Username</InputLabel>
-                        <Input
-                            id='username'
-                            sx={{ display: 'block' }}
-                            type='text'
-                        />
-                    </FormControl>
-                    <FormControl sx={{ marginBottom: 2 }}>
-                        <InputLabel>Password</InputLabel>
-                        <Input
-                            id='password'
-                            sx={{ display: 'block' }}
-                            type='text'
-                        />
-                    </FormControl>
-                    <Button variant='contained'>Sign In</Button>
-                </Stack>
+                <Card sx={{ minWidth: '300px' }} elevation={8}>
+                    <CardContent>
+                        <Stack gap={2}>
+                            <Typography align='center' variant='h2' sx={{ fontSize: 22 }}>Login</Typography>
+                            <TextField
+                                id='username'
+                                label='Username'
+                                variant='outlined'
+                            />
+                            <TextField
+                                id='password'
+                                label='Password'
+                                variant='outlined'
+                            />
+                            <Button variant='contained'>Sign In</Button>
+                        </Stack>
+                    </CardContent>
+                </Card>
             </form>
         </Box>
     )
