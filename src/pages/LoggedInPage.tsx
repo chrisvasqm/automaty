@@ -5,7 +5,7 @@ const LoggedInPage = () => {
     return (
         <Box
             sx={{
-                minHeight: '96vh',
+                minHeight: '90vh',
                 display: 'flex',
                 alignItems: 'center'
             }}>
