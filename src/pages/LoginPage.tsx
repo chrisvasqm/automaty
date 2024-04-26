@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Box, Button, Card, CardContent, Stack, TextField, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 
 const schema = z.object({
@@ -15,6 +16,8 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>
 
 const LoginPage = () => {
+    const navigate = useNavigate();
+
     const {
         register,
         handleSubmit,
@@ -22,7 +25,10 @@ const LoginPage = () => {
     } = useForm<FormData>({ resolver: zodResolver(schema) })
 
     const onSubmit = (data: FormData) => {
-        console.log(data);
+        const { username, password } = data;
+        if (username === 'admin' && password === 'admin') {
+            navigate('/loggedIn')
+        }
     }
 
     return (
