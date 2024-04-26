@@ -9,12 +9,12 @@ const LoggedInPage = () => {
                 display: 'flex',
                 alignItems: 'center'
             }}>
-            <Stack gap={2}>
+            <Stack gap={2} alignItems={'center'}>
                 <Typography
                     align='center'
                     variant='h2'
                     sx={{ fontSize: 22 }}>
-                    Logged in
+                    Welcome back
                 </Typography>
 
                 <Link to='/'>
