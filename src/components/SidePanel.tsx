@@ -9,7 +9,7 @@ const SidePanel = () => {
             sx={{ width: '100%', maxWidth: 200 }}>
             <List>
                 <Link to='/'>
-                    <ListItem disablePadding>
+                    <ListItem disablePadding id='menu-login'>
                         <ListItemButton>
                             <ListItemIcon>
                                 <LoginIcon />
@@ -20,7 +20,7 @@ const SidePanel = () => {
                 </Link>
 
                 <Link to='/students'>
-                    <ListItem disablePadding>
+                    <ListItem disablePadding id='menu-students'>
                         <ListItemButton>
                             <ListItemIcon>
                                 <ImportContactsIcon />

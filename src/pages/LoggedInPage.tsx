@@ -11,6 +11,7 @@ const LoggedInPage = () => {
             }}>
             <Stack gap={2} alignItems={'center'}>
                 <Typography
+                    id='title-login'
                     align='center'
                     variant='h2'
                     sx={{ fontSize: 22 }}>
@@ -19,6 +20,7 @@ const LoggedInPage = () => {
 
                 <Link to='/'>
                     <Button
+                        id='sign-out'
                         variant='contained'
                         type='submit'>
                         Sign Out

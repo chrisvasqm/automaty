@@ -45,6 +45,7 @@ const LoginPage = () => {
                     <CardContent>
                         <Stack gap={2}>
                             <Typography
+                                id='title-login'
                                 align='center'
                                 variant='h2'
                                 sx={{ fontSize: 20 }}>
@@ -71,7 +72,10 @@ const LoginPage = () => {
                             />
                             {errors?.password && <Typography color={'red'}>{errors.password.message}</Typography>}
 
-                            <Button variant='contained' type='submit'>Sign In</Button>
+                            <Button
+                                id='sign-in'
+                                variant='contained'
+                                type='submit'>Sign In</Button>
                         </Stack>
                     </CardContent>
                 </Card>
