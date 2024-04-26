@@ -41,7 +41,7 @@ const LoginPage = () => {
                 alignItems: 'center'
             }}>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <Card sx={{ minWidth: '350px' }} elevation={8}>
+                <Card sx={{ minWidth: '300px' }} elevation={8}>
                     <CardContent>
                         <Stack gap={2}>
                             <Typography
