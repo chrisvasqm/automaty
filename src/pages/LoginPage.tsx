@@ -8,10 +8,10 @@ import { z } from 'zod'
 const schema = z.object({
     username: z
         .string({ required_error: 'Username is required' })
-        .min(1, 'Username is required'),
+        .min(5, 'Username must have at least 5 characters'),
     password: z
         .string({ required_error: 'Password is required' })
-        .min(1, 'Password must have at least 4 characters')
+        .min(4, 'Password must have at least 4 characters')
 })
 
 type FormData = z.infer<typeof schema>
