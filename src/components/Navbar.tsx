@@ -1,11 +1,11 @@
+import { Card, Typography } from '@mui/material'
 
 const Navbar = () => {
     return (
-        <nav style={{
-            border: '1px solid black',
-            paddingLeft: '1rem'
-        }}>
-            <h2>Automaty</h2>
+        <nav>
+            <Card elevation={6} sx={{ padding: 2, borderRadius: 0 }}>
+                <Typography variant='h1' fontSize={26}>Automaty</Typography>
+            </Card>
         </nav>
     )
 }
