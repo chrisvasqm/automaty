@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Box, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Stack, TextField, Typography } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
 import dayjs from 'dayjs'
 import { matchIsValidTel, MuiTelInput } from 'mui-tel-input'
@@ -26,6 +26,7 @@ const StudentsPage = () => {
   const maximumDate = dayjs().subtract(18, 'year');
   const [selectedGender, setSelectedGender] = useState(genders[0].value);
   const [selectedBirthDate, setSelectedBirthDate] = useState(maximumDate.toDate().toLocaleDateString());
+  const [open, setOpen] = useState(false);
 
   const {
     register,
@@ -44,6 +45,7 @@ const StudentsPage = () => {
       birthDate: selectedBirthDate
     }
     console.log(newData)
+    setOpen(true)
   }
 
   return (
@@ -124,8 +126,26 @@ const StudentsPage = () => {
           </Button>
         </Stack>
       </form>
-    </Box >
 
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          Thanks for applying
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            We will review your application and contact you in the following days.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)} autoFocus>Close</Button>
+        </DialogActions>
+      </Dialog>
+    </Box >
   )
 }
 
