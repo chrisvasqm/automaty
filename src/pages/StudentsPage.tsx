@@ -62,6 +62,7 @@ const StudentsPage = () => {
             <FormLabel>Gender</FormLabel>
             <RadioGroup
               row
+              defaultValue='female'
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group">
               <FormControlLabel id='gender-female' value="female" control={<Radio />} label="Female" />
