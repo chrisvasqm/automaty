@@ -1,8 +1,14 @@
 import { Box, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Stack, TextField, Typography } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
 import dayjs from 'dayjs'
+import { MuiTelInput } from 'mui-tel-input'
+import { useState } from 'react'
 
 const StudentsPage = () => {
+  const [phone, setPhone] = useState('');
+
+  const handlePhoneChange = (newPhone: string) => setPhone(newPhone)
+
   return (
     <Box paddingTop={2}>
       <Typography fontSize={20} align='center'>Students Form</Typography>
@@ -35,10 +41,12 @@ const StudentsPage = () => {
             </RadioGroup>
           </FormControl>
 
-          <TextField
+          <MuiTelInput
             id='phone'
-            type='tel'
-            label='Phone' />
+            label='Phone'
+            value={phone}
+            onChange={handlePhoneChange}
+            defaultCountry='DO' />
 
           <DatePicker
             label='Date of birth'
