@@ -2,31 +2,35 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Box, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Stack, TextField, Typography } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
 import dayjs from 'dayjs'
-import { MuiTelInput } from 'mui-tel-input'
+import { matchIsValidTel, MuiTelInput } from 'mui-tel-input'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 const schema = z.object({
   firstName: z.string().min(1, 'First name must have at least 1 character'),
   lastName: z.string().min(1, 'Last name must have at least 1 character'),
-  email: z.string().email('Invalid email')
+  email: z.string().email('Invalid email'),
+  phone: z.string().min(15).max(15)
 })
 
 type FormData = z.infer<typeof schema>
 
 const StudentsPage = () => {
-  const [phone, setPhone] = useState('');
-  const handlePhoneChange = (newPhone: string) => setPhone(newPhone)
+  const maximumDate = dayjs().subtract(18, 'year');
 
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors }
-  } = useForm<FormData>({ resolver: zodResolver(schema) })
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+    defaultValues: { phone: '' },
+  })
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    console.log(data)
   }
 
   return (
@@ -62,26 +66,35 @@ const StudentsPage = () => {
             <FormLabel>Gender</FormLabel>
             <RadioGroup
               row
-              defaultValue='female'
+              defaultValue='male'
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group">
-              <FormControlLabel id='gender-female' value="female" control={<Radio />} label="Female" />
               <FormControlLabel id='gender-male' value="male" control={<Radio />} label="Male" />
+              <FormControlLabel id='gender-female' value="female" control={<Radio />} label="Female" />
               <FormControlLabel id='gender-other' value="other" control={<Radio />} label="Other" />
             </RadioGroup>
           </FormControl>
 
-          <MuiTelInput
-            id='phone'
-            label='Phone'
-            value={phone}
-            onChange={handlePhoneChange}
-            defaultCountry='DO' />
+          <Controller
+            name='phone'
+            control={control}
+            rules={{ validate: (value) => matchIsValidTel(value, { onlyCountries: ['DO'] }) }}
+            render={({ field: { ref: fieldRef, value, ...fieldProps }, fieldState }) => (
+              <MuiTelInput
+                {...fieldProps}
+                disableDropdown
+                value={value ?? ''}
+                inputRef={fieldRef}
+                defaultCountry='DO'
+                onlyCountries={['DO']}
+                helperText={fieldState.invalid ? 'Phone is invalid' : ''}
+                error={fieldState.invalid} />
+            )} />
 
           <DatePicker
             label='Date of birth'
-            defaultValue={dayjs().subtract(18, 'year')}
-            maxDate={dayjs().subtract(18, 'year')} />
+            defaultValue={maximumDate}
+            maxDate={maximumDate} />
 
           <Button
             id='register'
