@@ -59,18 +59,20 @@ const LoginPage = () => {
                                 type='text'
                                 label='Username'
                                 variant='outlined'
+                                error={errors.username !== undefined}
+                                helperText={errors.username && errors.username.message}
                                 {...register('username')}
                             />
-                            {errors?.username && <Typography color={'red'}>{errors.username.message}</Typography>}
 
                             <TextField
                                 id='password'
                                 type='password'
                                 label='Password'
                                 variant='outlined'
+                                error={errors.password !== undefined}
+                                helperText={errors.password && errors.password.message}
                                 {...register('password')}
                             />
-                            {errors?.password && <Typography color={'red'}>{errors.password.message}</Typography>}
 
                             <Button
                                 id='sign-in'
