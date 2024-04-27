@@ -3,6 +3,7 @@ import { Box, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGrou
 import { DatePicker } from '@mui/x-date-pickers'
 import dayjs from 'dayjs'
 import { matchIsValidTel, MuiTelInput } from 'mui-tel-input'
+import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -23,6 +24,8 @@ const genders = [
 
 const StudentsPage = () => {
   const maximumDate = dayjs().subtract(18, 'year');
+  const [selectedGender, setSelectedGender] = useState(genders[0].value);
+  const [selectedBirthDate, setSelectedBirthDate] = useState(maximumDate.toDate().toLocaleDateString());
 
   const {
     register,
@@ -35,7 +38,12 @@ const StudentsPage = () => {
   })
 
   const onSubmit = (data: FormData) => {
-    console.log(data)
+    const newData = {
+      ...data,
+      gender: selectedGender,
+      birthDate: selectedBirthDate
+    }
+    console.log(newData)
   }
 
   return (
@@ -73,7 +81,8 @@ const StudentsPage = () => {
               row
               defaultValue={genders[0].value}
               aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group">
+              name="row-radio-buttons-group"
+              onChange={(event => setSelectedGender(event.target.value))}>
               {genders.map(gender =>
                 <FormControlLabel
                   key={gender.id}
@@ -104,7 +113,8 @@ const StudentsPage = () => {
           <DatePicker
             label='Date of birth'
             defaultValue={maximumDate}
-            maxDate={maximumDate} />
+            maxDate={maximumDate}
+            onChange={date => setSelectedBirthDate(date?.toDate().toLocaleDateString()!)} />
 
           <Button
             id='register'
