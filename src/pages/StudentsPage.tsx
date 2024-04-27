@@ -8,8 +8,8 @@ import { Controller, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 const schema = z.object({
-  firstName: z.string().min(1, 'First name must have at least 1 character'),
-  lastName: z.string().min(1, 'Last name must have at least 1 character'),
+  firstName: z.string().min(1, 'First Name must have at least 1 character'),
+  lastName: z.string().min(1, 'Last Name must have at least 1 character'),
   email: z.string().email('Invalid email'),
   phone: z.string().min(15).max(15)
 })
