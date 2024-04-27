@@ -103,6 +103,7 @@ const StudentsPage = () => {
             render={({ field: { ref: fieldRef, value, ...fieldProps }, fieldState }) => (
               <MuiTelInput
                 {...fieldProps}
+                id='phone'
                 disableDropdown
                 value={value ?? ''}
                 inputRef={fieldRef}
@@ -142,7 +143,7 @@ const StudentsPage = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpen(false)} autoFocus>Close</Button>
+          <Button id='alert-dialog-close' onClick={() => setOpen(false)} autoFocus>Close</Button>
         </DialogActions>
       </Dialog>
     </Box >
