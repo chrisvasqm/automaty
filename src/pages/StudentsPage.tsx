@@ -80,6 +80,7 @@ const StudentsPage = () => {
 
           <DatePicker
             label='Date of birth'
+            defaultValue={dayjs().subtract(18, 'year')}
             maxDate={dayjs().subtract(18, 'year')} />
 
           <Button
