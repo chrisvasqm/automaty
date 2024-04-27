@@ -15,6 +15,12 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>
 
+const genders = [
+  { id: 'gender-male', value: 'male', label: 'Male' },
+  { id: 'gender-female', value: 'female', label: 'Female' },
+  { id: 'gender-other', value: 'other', label: 'Other' }
+]
+
 const StudentsPage = () => {
   const maximumDate = dayjs().subtract(18, 'year');
 
@@ -65,12 +71,17 @@ const StudentsPage = () => {
             <FormLabel>Gender</FormLabel>
             <RadioGroup
               row
-              defaultValue='male'
+              defaultValue={genders[0].value}
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group">
-              <FormControlLabel id='gender-male' value="male" control={<Radio />} label="Male" />
-              <FormControlLabel id='gender-female' value="female" control={<Radio />} label="Female" />
-              <FormControlLabel id='gender-other' value="other" control={<Radio />} label="Other" />
+              {genders.map(gender =>
+                <FormControlLabel
+                  key={gender.id}
+                  id={gender.id}
+                  value={gender.value}
+                  label={gender.label}
+                  control={<Radio />} />
+              )}
             </RadioGroup>
           </FormControl>
 
@@ -103,7 +114,7 @@ const StudentsPage = () => {
           </Button>
         </Stack>
       </form>
-    </Box>
+    </Box >
 
   )
 }
