@@ -1,6 +1,6 @@
-import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import ImportContactsIcon from '@mui/icons-material/ImportContacts';
 import LoginIcon from '@mui/icons-material/Login';
+import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const SidePanel = () => {
@@ -29,7 +29,6 @@ const SidePanel = () => {
                         </ListItemButton>
                     </ListItem>
                 </Link>
-
             </List>
         </Box>
     )

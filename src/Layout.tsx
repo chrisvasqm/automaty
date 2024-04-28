@@ -1,9 +1,9 @@
+import { useMediaQuery, useTheme } from '@mui/material'
 import { Outlet } from 'react-router-dom'
-import Navbar from './components/Navbar'
 import Container from './components/Container'
 import HStack from './components/HStack'
+import Navbar from './components/Navbar'
 import SidePanel from './components/SidePanel'
-import { useMediaQuery, useTheme } from '@mui/material'
 
 const Layout = () => {
   const theme = useTheme();

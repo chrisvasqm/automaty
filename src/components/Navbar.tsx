@@ -1,11 +1,16 @@
 import GitHubIcon from '@mui/icons-material/GitHub';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Box, Card, IconButton, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Card, Drawer, IconButton, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import SidePanel from './SidePanel';
 
 const Navbar = () => {
     const theme = useTheme();
     const isTablet = useMediaQuery(theme.breakpoints.up('md'))
+    const [open, setOpen] = useState(false)
+
+    const toggleDrawer = () => setOpen(!open)
 
     return (
         <nav>
@@ -19,9 +24,17 @@ const Navbar = () => {
                     <Stack direction={'row'} alignItems={'center'} gap={2}>
                         {
                             !isTablet &&
-                            <IconButton>
-                                <MenuIcon />
-                            </IconButton>
+                            <>
+                                <IconButton onClick={toggleDrawer}>
+                                    <MenuIcon />
+                                </IconButton>
+                                <Drawer
+                                    open={open}
+                                    onClose={toggleDrawer}
+                                    onClick={toggleDrawer}>
+                                    <SidePanel />
+                                </Drawer>
+                            </>
                         }
                         <Typography
                             id='app-name'
