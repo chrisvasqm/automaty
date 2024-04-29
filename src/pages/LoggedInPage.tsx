@@ -11,7 +11,7 @@ const LoggedInPage = () => {
             }}>
             <Stack gap={2} alignItems={'center'}>
                 <Typography
-                    id='title-login'
+                    id='title-welcome-back'
                     align='center'
                     variant='h2'
                     sx={{ fontSize: 22 }}>
