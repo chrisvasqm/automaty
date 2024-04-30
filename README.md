@@ -4,7 +4,7 @@ Automaty is a React project built with Vite and TypeScript, designed to help QA 
 
 ## Getting started
 
-To get started, follow these steps:
+This app is publicly available at [automaty.vercel.app](https://automaty.vercel.app). But if you want to run it locally, follow these steps:
 
 1. Install the dependencies
 
