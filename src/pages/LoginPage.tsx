@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Alert, Box, Button, Card, CardContent, Stack, TextField, Typography } from '@mui/material'
+import { Alert, Box, Button, Card, CardContent, CircularProgress, Stack, TextField, Typography } from '@mui/material'
+import delay from 'delay'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
@@ -17,8 +18,9 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>
 
 const LoginPage = () => {
-    const navigate = useNavigate();
-    const [loginError, setLoginError] = useState(false);
+    const navigate = useNavigate()
+    const [loginError, setLoginError] = useState(false)
+    const [isLoading, setLoading] = useState(false)
 
     const {
         register,
@@ -26,11 +28,19 @@ const LoginPage = () => {
         formState: { errors }
     } = useForm<FormData>({ resolver: zodResolver(schema) })
 
-    const onSubmit = (data: FormData) => {
+    const onSubmit = async (data: FormData) => {
         const { username, password } = data;
 
-        if (username === 'admin' && password === 'admin') navigate('/loggedIn')
-        else setLoginError(true)
+        if (username === 'admin' && password === 'admin') {
+            setLoading(true)
+            const random = Math.floor(Math.random() * 5) + 1
+            await delay(random * 1000)
+            setLoading(false)
+            navigate('/loggedIn')
+        }
+        else {
+            setLoginError(true)
+        }
     }
 
     return (
@@ -61,6 +71,7 @@ const LoginPage = () => {
                                 variant='outlined'
                                 error={errors.username !== undefined}
                                 helperText={errors.username && errors.username.message}
+                                disabled={isLoading}
                                 {...register('username')}
                             />
 
@@ -71,13 +82,17 @@ const LoginPage = () => {
                                 variant='outlined'
                                 error={errors.password !== undefined}
                                 helperText={errors.password && errors.password.message}
+                                disabled={isLoading}
                                 {...register('password')}
                             />
 
                             <Button
                                 id='sign-in'
+                                disabled={isLoading}
                                 variant='contained'
-                                type='submit'>Sign In</Button>
+                                type='submit'>
+                                {isLoading ? <CircularProgress size={20} /> : 'Sign In'}
+                            </Button>
                         </Stack>
                     </CardContent>
                 </Card>
