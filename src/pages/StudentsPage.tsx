@@ -1,17 +1,19 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Stack, TextField, Typography } from '@mui/material'
+import { Autocomplete, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Stack, TextField, Typography } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
 import dayjs from 'dayjs'
 import { matchIsValidTel, MuiTelInput } from 'mui-tel-input'
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { z } from 'zod'
+import provinces from '../data/provinces'
 
 const schema = z.object({
   firstName: z.string().min(1, 'First Name must have at least 1 character'),
   lastName: z.string().min(1, 'Last Name must have at least 1 character'),
   email: z.string().email('Invalid email'),
-  phone: z.string().min(15).max(15)
+  phone: z.string().min(15).max(15),
+  provinces: z.enum(provinces)
 })
 
 type FormData = z.infer<typeof schema>
@@ -118,6 +120,30 @@ const StudentsPage = () => {
             defaultValue={maximumDate}
             maxDate={maximumDate}
             onChange={date => setSelectedBirthDate(date?.toDate().toLocaleDateString()!)} />
+
+          <Controller
+            name="provinces"
+            control={control}
+            render={({ field, fieldState }) => {
+              return (
+                <Autocomplete
+                  {...field}
+                  options={provinces}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      id={field.name}
+                      label="Choose a province"
+                      variant="outlined"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message ? 'Invalid province' : ''}
+                    />
+                  )}
+                  onChange={(_, data) => field.onChange(data)}
+                />
+              );
+            }}
+          />
 
           <Button
             id='register'
