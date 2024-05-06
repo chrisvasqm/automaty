@@ -4,9 +4,9 @@ import Contact from '../models/Contact';
 import ContactsTable from '../components/ContactsTable';
 
 const data: Contact[] = [
-  { id: 1, name: 'John', phone: '+1 (809) 555-555', email: 'john@gmail.com' },
-  { id: 2, name: 'Jose', phone: '+1 (809) 555-555', email: 'jose@gmail.com' },
-  { id: 3, name: 'Julian', phone: '+1 (809) 555-555', email: 'julian@gmail.com' },
+  { id: 1, name: 'John', phone: '+1 (809) 111-1111', email: 'john@gmail.com' },
+  { id: 2, name: 'Jose', phone: '+1 (809) 222-2222', email: 'jose@gmail.com' },
+  { id: 3, name: 'Julian', phone: '+1 (809) 333-3333', email: 'julian@gmail.com' },
 ]
 
 const UploadPage = () => {
