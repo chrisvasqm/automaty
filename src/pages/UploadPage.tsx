@@ -14,7 +14,10 @@ const UploadPage = () => {
   return (
     <Box minWidth={'700px'} marginTop={2}>
       <Stack direction={'row'} gap={1} marginBottom={1}>
-        <Button variant='contained' onClick={() => setContact(data)}>
+        <Button
+          variant='contained'
+          disabled={contacts.length > 0}
+          onClick={() => setContact(data)}>
           Upload
         </Button>
 
