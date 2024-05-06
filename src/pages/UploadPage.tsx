@@ -1,31 +1,49 @@
 import { Box, Button, Stack } from '@mui/material';
 import { useState } from 'react';
-import Contact from '../models/Contact';
+import { useCSVReader } from 'react-papaparse';
 import ContactsTable from '../components/ContactsTable';
-
-const data: Contact[] = [
-  { id: 1, name: 'John', phone: '+1 (809) 111-1111', email: 'john@gmail.com' },
-  { id: 2, name: 'Jose', phone: '+1 (809) 222-2222', email: 'jose@gmail.com' },
-  { id: 3, name: 'Julian', phone: '+1 (809) 333-3333', email: 'julian@gmail.com' },
-]
+import Contact from '../models/Contact';
 
 const UploadPage = () => {
-  const [contacts, setContact] = useState<Contact[]>([])
+  const [contacts, setContacts] = useState<Contact[]>([])
+  const { CSVReader } = useCSVReader();
+
+  const handleUpload = (results: any) => {
+    const removedHeaders = results.data
+      .slice(1);
+    const data = removedHeaders.map((row: any) =>
+    ({
+      id: row[0],
+      name: row[1],
+      phone: row[2],
+      email: row[3]
+    }));
+
+    setContacts(data);
+  }
 
   return (
     <Box minWidth={'700px'} marginTop={2}>
       <Stack direction={'row'} gap={1} marginBottom={1}>
-        <Button
-          variant='contained'
-          disabled={contacts.length > 0}
-          onClick={() => setContact(data)}>
-          Upload
-        </Button>
+        <CSVReader
+          onUploadAccepted={handleUpload}
+        >
+          {({
+            getRootProps
+          }: any) => (
+            <Button
+              variant='contained'
+              disabled={contacts.length > 0}
+              {...getRootProps()}>
+              Upload
+            </Button>
+          )}
+        </CSVReader>
 
         <Button
           variant='contained'
           disabled={contacts.length === 0}
-          onClick={() => setContact([])}
+          onClick={() => setContacts([])}
         >
           Clear
         </Button>
