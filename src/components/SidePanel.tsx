@@ -1,5 +1,6 @@
 import ImportContactsIcon from '@mui/icons-material/ImportContacts';
 import LoginIcon from '@mui/icons-material/Login';
+import PostAddIcon from '@mui/icons-material/PostAdd';
 import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { Link } from 'react-router-dom';
@@ -27,6 +28,17 @@ const SidePanel = () => {
                                 <ImportContactsIcon />
                             </ListItemIcon>
                             <ListItemText primary='Students' />
+                        </ListItemButton>
+                    </ListItem>
+                </Link>
+
+                <Link to='/upload' style={{ textDecoration: 'none', color: grey[700] }}>
+                    <ListItem disablePadding id='menu-upload'>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <PostAddIcon />
+                            </ListItemIcon>
+                            <ListItemText primary='Upload' />
                         </ListItemButton>
                     </ListItem>
                 </Link>
