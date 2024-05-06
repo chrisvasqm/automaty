@@ -3,12 +3,13 @@ import { useState } from 'react';
 import Contact from '../models/Contact';
 import ContactsTable from '../components/ContactsTable';
 
+const data: Contact[] = [
+  { id: 1, name: 'John', phone: '+1 (809) 555-555', email: 'john@gmail.com' },
+  { id: 2, name: 'Jose', phone: '+1 (809) 555-555', email: 'jose@gmail.com' },
+  { id: 3, name: 'Julian', phone: '+1 (809) 555-555', email: 'julian@gmail.com' },
+]
+
 const UploadPage = () => {
-  const data: Contact[] = [
-    { id: 1, name: 'John', phone: '+1 (809) 555-555', email: 'john@gmail.com' },
-    { id: 2, name: 'Jose', phone: '+1 (809) 555-555', email: 'jose@gmail.com' },
-    { id: 3, name: 'Julian', phone: '+1 (809) 555-555', email: 'julian@gmail.com' },
-  ]
   const [contacts, setContact] = useState<Contact[]>([])
 
   return (
