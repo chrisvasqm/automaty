@@ -1,4 +1,4 @@
-import { Box, Button } from '@mui/material';
+import { Box, Button, Stack } from '@mui/material';
 import { useState } from 'react';
 import Contact from '../models/Contact';
 import ContactsTable from '../components/ContactsTable';
@@ -12,8 +12,20 @@ const UploadPage = () => {
   const [contacts, setContact] = useState<Contact[]>([])
 
   return (
-    <Box minWidth={'700px'}>
-      <Button variant='contained' onClick={() => setContact(data)}>Upload</Button>
+    <Box minWidth={'700px'} marginTop={2}>
+      <Stack direction={'row'} gap={1} marginBottom={1}>
+        <Button variant='contained' onClick={() => setContact(data)}>
+          Upload
+        </Button>
+
+        <Button
+          variant='contained'
+          disabled={contacts.length === 0}
+          onClick={() => setContact([])}
+        >
+          Clear
+        </Button>
+      </Stack>
 
       <ContactsTable contacts={contacts} />
     </Box>
