@@ -7,7 +7,7 @@ interface Props {
 
 const ContactsTable = ({ contacts }: Props) => {
     if (contacts.length === 0)
-        return <Typography>There are no contacts to show.</Typography>
+        return <Typography>There are no contacts to show. Click <a href='./src/data/contacts.csv' download='contacts.csv'>here</a> to download a sample.</Typography>
 
     return (
         <TableContainer component={Paper}>
