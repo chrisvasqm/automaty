@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Autocomplete, Box, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Stack, TextField, Typography } from '@mui/material'
+import { Autocomplete, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Stack, TextField, Typography } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
 import dayjs from 'dayjs'
 import { matchIsValidTel, MuiTelInput } from 'mui-tel-input'
@@ -7,7 +7,6 @@ import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import provinces from '../data/provinces'
-import { Toaster, toast } from 'sonner'
 
 const schema = z.object({
   firstName: z.string().min(1, 'First Name must have at least 1 character'),
@@ -29,6 +28,7 @@ const StudentsPage = () => {
   const maximumDate = dayjs().subtract(18, 'year');
   const [selectedGender, setSelectedGender] = useState(genders[0].value);
   const [selectedBirthDate, setSelectedBirthDate] = useState(maximumDate.toDate().toLocaleDateString());
+  const [open, setOpen] = useState(false);
 
   const {
     register,
@@ -47,8 +47,7 @@ const StudentsPage = () => {
       birthDate: selectedBirthDate
     }
     console.log(newData)
-
-    toast.success(`Thanks for applying ${newData.firstName}.`)
+    setOpen(true)
   }
 
   return (
@@ -155,11 +154,24 @@ const StudentsPage = () => {
         </Stack>
       </form>
 
-      <Toaster
-        richColors
-        closeButton
-        duration={3000}
-        position='bottom-center' />
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          Thanks for applying
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            We will review your application and contact you in the following days.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button id='alert-dialog-close' onClick={() => setOpen(false)} autoFocus>Close</Button>
+        </DialogActions>
+      </Dialog>
     </Box >
   )
 }
