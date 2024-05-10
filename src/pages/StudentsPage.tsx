@@ -158,7 +158,7 @@ const StudentsPage = () => {
       <Toaster
         richColors
         closeButton
-        duration={10000}
+        duration={3000}
         position='bottom-center' />
     </Box >
   )
