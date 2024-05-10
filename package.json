@@ -26,6 +26,7 @@
     "react-hook-form": "^7.51.3",
     "react-papaparse": "^4.4.0",
     "react-router-dom": "^6.23.0",
+    "sonner": "^1.4.41",
     "zod": "^3.23.7"
   },
   "devDependencies": {
