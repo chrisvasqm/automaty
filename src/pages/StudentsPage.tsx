@@ -64,6 +64,7 @@ const StudentsPage = () => {
       dayjs(selectedBirthDate).isAfter(maximumDate) ||
       !dayjs(selectedBirthDate).isValid()
     ) {
+      setBirthDateError('invalidDate');
       return;
     }
 
