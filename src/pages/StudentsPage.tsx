@@ -128,12 +128,13 @@ const StudentsPage = () => {
             render={({ field, fieldState }) => {
               return (
                 <Autocomplete
+                  id='province-autocomplete'
                   {...field}
                   options={provinces}
                   renderInput={(params) => (
                     <TextField
                       {...params}
-                      id={field.name}
+                      id={`province-${field.name}`}
                       label="Choose a province"
                       variant="outlined"
                       error={!!fieldState.error}
