@@ -1,13 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Autocomplete, Box, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Stack, TextField, Typography } from '@mui/material'
-import { DatePicker } from '@mui/x-date-pickers'
+import { DatePicker, DateValidationError } from '@mui/x-date-pickers'
 import dayjs from 'dayjs'
 import { matchIsValidTel, MuiTelInput } from 'mui-tel-input'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
+import { toast, Toaster } from 'sonner'
 import { z } from 'zod'
 import provinces from '../data/provinces'
-import { Toaster, toast } from 'sonner'
 
 const schema = z.object({
   firstName: z.string().min(1, 'First Name must have at least 1 character'),
@@ -29,6 +29,24 @@ const StudentsPage = () => {
   const maximumDate = dayjs().subtract(18, 'year');
   const [selectedGender, setSelectedGender] = useState(genders[0].value);
   const [selectedBirthDate, setSelectedBirthDate] = useState(maximumDate.toDate().toLocaleDateString());
+  const [birthDateError, setBirthDateError] = useState<DateValidationError | null>(null);
+
+  const birthDateErrorMessage = useMemo(() => {
+    switch (birthDateError) {
+      case 'maxDate':
+      case 'minDate': {
+        return 'Must be at least 18 years old';
+      }
+
+      case 'invalidDate': {
+        return 'Invalid birth date';
+      }
+
+      default: {
+        return '';
+      }
+    }
+  }, [birthDateError]);
 
   const {
     register,
@@ -41,12 +59,19 @@ const StudentsPage = () => {
   })
 
   const onSubmit = (data: FormData) => {
+    if (
+      !selectedBirthDate ||
+      dayjs(selectedBirthDate).isAfter(maximumDate) ||
+      !dayjs(selectedBirthDate).isValid()
+    ) {
+      return;
+    }
+
     const newData = {
       ...data,
       gender: selectedGender,
       birthDate: selectedBirthDate
     }
-    console.log(newData)
 
     toast.success(`Thanks for applying ${newData.firstName}.`)
   }
@@ -118,8 +143,16 @@ const StudentsPage = () => {
 
           <DatePicker
             label='Date of birth'
+            name='datepicker-birth-date'
             defaultValue={maximumDate}
             maxDate={maximumDate}
+            onError={error => setBirthDateError(error!)}
+            slotProps={{
+              textField: {
+                error: !!birthDateError,
+                helperText: birthDateErrorMessage
+              },
+            }}
             onChange={date => setSelectedBirthDate(date?.toDate().toLocaleDateString()!)} />
 
           <Controller
