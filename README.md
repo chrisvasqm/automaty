@@ -20,6 +20,9 @@ npm run dev
 
 3. Start automating!
 
+> [!NOTE]
+> If you want to "login", use "admin" as your `username` and `password`. It's currently hardcoded with a fake delay between 1-5 so you can practice waiting for an element to appear on the next route.
+
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to Automaty, please fork the repository and submit a pull request.
