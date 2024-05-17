@@ -7,9 +7,18 @@ const ErrorPage = () => {
         <>
             <Navbar />
 
-            <Stack gap={2} height={'90vh'} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Stack
+                gap={2}
+                height={'90vh'}
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
                 <Typography variant='h3'>404 Not Found</Typography>
+
                 <Typography>Seems like you have lost your way.</Typography>
+
                 <Link to='/'>
                     <Button variant='contained'>Go Home</Button>
                 </Link>
