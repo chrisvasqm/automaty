@@ -55,37 +55,47 @@ const UploadPage = () => {
 
   return (
     <Box minWidth={'700px'} marginTop={2}>
-      <Stack direction={'row'} gap={1} marginBottom={1}>
-        <CSVReader
-          onUploadAccepted={handleUpload}
-        >
-          {({
-            getRootProps
-          }: any) => (
-            <Button
-              variant='contained'
-              disabled={contacts.length > 0}
-              {...getRootProps()}>
-              Upload
-            </Button>
-          )}
-        </CSVReader>
+      <Stack gap={2}>
+        <Typography variant='h4'>Contacts</Typography>
 
-        <Button
-          variant='contained'
-          disabled={contacts.length === 0}
-          onClick={() => setContacts([])}
-        >
-          Clear
-        </Button>
+        <Typography>
+          Upload some random contacts information from .csv file and it will render on
+          a beautiful table on this page with controls to sort by ID, Name, Phone or Email,
+          in ascending or descending order.
+        </Typography>
+
+        {/* When there's at least one validation error, render the errors. Otherwise, render the Contacts */}
+        {
+          errors.length > 0 ?
+            errors.map((error, index) => <Typography key={index} color={'red'}>{error}</Typography>) :
+            <ContactsTable contacts={contacts} />
+        }
+
+        <Stack direction={'row'} gap={1} marginBottom={1}>
+          <CSVReader
+            onUploadAccepted={handleUpload}
+          >
+            {({
+              getRootProps
+            }: any) => (
+              <Button
+                variant='contained'
+                disabled={contacts.length > 0}
+                {...getRootProps()}>
+                Upload
+              </Button>
+            )}
+          </CSVReader>
+
+          <Button
+            variant='contained'
+            disabled={contacts.length === 0}
+            onClick={() => setContacts([])}
+          >
+            Clear
+          </Button>
+        </Stack>
       </Stack>
-
-      {/* When there's at least one validation error, render the errors. Otherwise, render the Contacts */}
-      {
-        errors.length > 0 ?
-          errors.map((error, index) => <Typography key={index} color={'red'}>{error}</Typography>) :
-          <ContactsTable contacts={contacts} />
-      }
     </Box>
   )
 }
