@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Alert, Box, Button, Card, CardContent, CircularProgress, Stack, TextField, Typography } from '@mui/material'
+import InfoIcon from '@mui/icons-material/Info'
+import { Alert, Box, Button, Card, CardContent, CircularProgress, IconButton, Stack, TextField, Tooltip, Typography } from '@mui/material'
 import delay from 'delay'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -60,6 +61,11 @@ const LoginPage = () => {
                                 variant='h2'
                                 sx={{ fontSize: 20 }}>
                                 Login
+                                <Tooltip title="Use 'admin' for both Username and Password" style={{fontSize: '50px !important'}}>
+                                    <IconButton>
+                                        <InfoIcon />
+                                    </IconButton>
+                                </Tooltip>
                             </Typography>
 
                             {loginError && <Alert severity="error">Invalid username and/or password</Alert>}
