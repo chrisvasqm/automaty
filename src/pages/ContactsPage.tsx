@@ -21,7 +21,7 @@ const schema = z.array(
   })
 )
 
-const UploadPage = () => {
+const ContactsPage = () => {
   const [contacts, setContacts] = useState<Contact[]>([])
   const [errors, setErrors] = useState<string[]>([]);
 
@@ -100,4 +100,4 @@ const UploadPage = () => {
   )
 }
 
-export default UploadPage
+export default ContactsPage

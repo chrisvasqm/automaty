@@ -32,13 +32,13 @@ const SidePanel = () => {
                     </ListItem>
                 </Link>
 
-                <Link to='/upload' style={{ textDecoration: 'none', color: grey[700] }}>
+                <Link to='/contacts' style={{ textDecoration: 'none', color: grey[700] }}>
                     <ListItem disablePadding id='menu-upload'>
                         <ListItemButton>
                             <ListItemIcon>
                                 <PostAddIcon />
                             </ListItemIcon>
-                            <ListItemText primary='Upload' />
+                            <ListItemText primary='Contacts' />
                         </ListItemButton>
                     </ListItem>
                 </Link>
