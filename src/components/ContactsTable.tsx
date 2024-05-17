@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Typography, Box } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { useState } from 'react';
 import Contact from '../models/Contact';
 
 interface Props {
