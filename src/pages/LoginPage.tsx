@@ -61,7 +61,7 @@ const LoginPage = () => {
                                 variant='h2'
                                 sx={{ fontSize: 20 }}>
                                 Login
-                                <Tooltip title="Use 'admin' for both Username and Password" style={{fontSize: '50px !important'}}>
+                                <Tooltip title="Use 'admin' for both Username and Password" style={{ fontSize: '50px !important' }}>
                                     <IconButton>
                                         <InfoIcon />
                                     </IconButton>
@@ -72,6 +72,7 @@ const LoginPage = () => {
 
                             <TextField
                                 id='username'
+                                inputProps={{ "data-testid": "username" }}
                                 type='text'
                                 label='Username'
                                 variant='outlined'
@@ -83,6 +84,7 @@ const LoginPage = () => {
 
                             <TextField
                                 id='password'
+                                inputProps={{ "data-testid": "password" }}
                                 type='password'
                                 label='Password'
                                 variant='outlined'
